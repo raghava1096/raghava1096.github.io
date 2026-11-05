@@ -35,7 +35,7 @@ export default function NodeField() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
       // fewer nodes on small screens
-      const count = Math.round(Math.min(80, Math.max(28, (w * h) / 14000)))
+      const count = Math.round(Math.min(95, Math.max(32, (w * h) / 11000)))
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
@@ -56,7 +56,7 @@ export default function NodeField() {
           const b = nodes[j]
           const d = Math.hypot(a.x - b.x, a.y - b.y)
           if (d < LINK_DIST) {
-            ctx.strokeStyle = `rgba(29, 78, 216, ${0.24 * (1 - d / LINK_DIST)})`
+            ctx.strokeStyle = `rgba(120, 160, 255, ${0.38 * (1 - d / LINK_DIST)})`
             ctx.lineWidth = 1
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
@@ -70,13 +70,13 @@ export default function NodeField() {
       for (const n of nodes) {
         const md = Math.hypot(n.x - mouse.x, n.y - mouse.y)
         const near = md < MOUSE_DIST ? 1 - md / MOUSE_DIST : 0
-        ctx.fillStyle = `rgba(29, 78, 216, ${0.45 + near * 0.5})`
+        ctx.fillStyle = `rgba(150, 182, 255, ${0.55 + near * 0.45})`
         ctx.beginPath()
         ctx.arc(n.x, n.y, n.r + near * 2, 0, Math.PI * 2)
         ctx.fill()
 
         if (near > 0) {
-          ctx.strokeStyle = `rgba(29, 78, 216, ${near * 0.35})`
+          ctx.strokeStyle = `rgba(150, 182, 255, ${near * 0.5})`
           ctx.beginPath()
           ctx.moveTo(n.x, n.y)
           ctx.lineTo(mouse.x, mouse.y)
@@ -90,11 +90,11 @@ export default function NodeField() {
         const b = nodes[p.b]
         const x = a.x + (b.x - a.x) * p.t
         const y = a.y + (b.y - a.y) * p.t
-        ctx.fillStyle = 'rgba(37, 99, 235, 0.9)'
-        ctx.shadowColor = 'rgba(37, 99, 235, 0.8)'
-        ctx.shadowBlur = 8
+        ctx.fillStyle = 'rgba(103, 232, 249, 1)'
+        ctx.shadowColor = 'rgba(103, 232, 249, 0.9)'
+        ctx.shadowBlur = 12
         ctx.beginPath()
-        ctx.arc(x, y, 2.4, 0, Math.PI * 2)
+        ctx.arc(x, y, 2.8, 0, Math.PI * 2)
         ctx.fill()
         ctx.shadowBlur = 0
       }
@@ -109,7 +109,7 @@ export default function NodeField() {
       }
 
       // start a new packet now and then between two linked nodes
-      if (packets.length < 6 && Math.random() < 0.04) {
+      if (packets.length < 10 && Math.random() < 0.08) {
         const a = Math.floor(Math.random() * nodes.length)
         let best = -1
         let bestD = LINK_DIST

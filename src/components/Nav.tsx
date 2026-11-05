@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { profile } from '../data'
 import { useActiveSection, useScrollProgress } from '../hooks'
 
@@ -10,13 +10,34 @@ const links = [
 ]
 const ids = links.map((l) => l.id)
 
+// nav is dark while it sits over the dark hero, light after that
+function useOverHero() {
+  const [over, setOver] = useState(true)
+  useEffect(() => {
+    const onScroll = () => {
+      const hero = document.getElementById('top')
+      const limit = hero ? hero.offsetHeight - 70 : 0
+      setOver(window.scrollY < limit)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+  return over
+}
+
 export default function Nav() {
   const progress = useScrollProgress()
   const active = useActiveSection(ids)
+  const overHero = useOverHero()
   const [open, setOpen] = useState(false)
 
   return (
-    <header className={`nav ${progress > 0.01 ? 'nav-scrolled' : ''}`}>
+    <header className={`nav ${overHero ? 'nav-dark' : 'nav-light'}`}>
       <div className="nav-inner">
         <a href="#top" className="brand">
           {profile.name}
