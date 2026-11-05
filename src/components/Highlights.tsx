@@ -10,8 +10,8 @@ function onMove(e: MouseEvent<HTMLElement>) {
   const y = e.clientY - r.top
   el.style.setProperty('--x', `${x}px`)
   el.style.setProperty('--y', `${y}px`)
-  el.style.setProperty('--rx', `${((y / r.height) - 0.5) * -6}deg`)
-  el.style.setProperty('--ry', `${((x / r.width) - 0.5) * 6}deg`)
+  el.style.setProperty('--rx', `${((y / r.height) - 0.5) * -5}deg`)
+  el.style.setProperty('--ry', `${((x / r.width) - 0.5) * 5}deg`)
 }
 
 function onLeave(e: MouseEvent<HTMLElement>) {
@@ -23,15 +23,20 @@ export default function Highlights() {
   return (
     <section id="work" className="section">
       <Reveal>
-        <h2 className="section-label">Things I've led</h2>
+        <h2 className="section-label">Things I've built and led</h2>
       </Reveal>
       <div className="cards">
         {highlights.map((h, i) => (
-          <Reveal key={h.title} delay={i * 120}>
+          <Reveal key={h.title} delay={(i % 2) * 120}>
             <article className="card" onMouseMove={onMove} onMouseLeave={onLeave}>
               <p className="card-where">{h.where}</p>
               <h3>{h.title}</h3>
-              <p>{h.text}</p>
+              <p className="card-text">{h.text}</p>
+              <div className="card-tags">
+                {h.tags.map((t) => (
+                  <span key={t}>{t}</span>
+                ))}
+              </div>
             </article>
           </Reveal>
         ))}

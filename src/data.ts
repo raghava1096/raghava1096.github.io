@@ -11,78 +11,142 @@ export const profile = {
 }
 
 // words that rotate in the hero headline
-export const buildWords = ['cloud consoles', 'design systems', 'payroll engines', 'edge fleets', 'firmware']
+export const buildWords = ['cloud consoles', 'design systems', 'AI assistants', 'payroll platforms', 'edge orchestration UIs']
 
 export const stats = [
   { value: 9, suffix: '+', label: 'years building software' },
   { value: 10000, suffix: '+', label: 'edge nodes managed by ZedControl' },
-  { value: 40, suffix: '%', prefix: '~', label: 'less frontend rework after the Design System' },
+  { value: 3, suffix: '', label: 'promotions, Jr. Engineer to Staff' },
 ]
 
 export const highlights = [
   {
     where: 'Zededa · ZedControl',
     title: 'AI Assistant',
-    text: 'Led the frontend architecture. Wired in an MCP server and agent workflows so users can ask about their edge fleet in plain language.',
+    text: 'Led frontend architecture and delivery of the ZedControl AI Assistant. Integrated an MCP server and AI agent workflows so users can query their edge infrastructure in real time, which helped cut support tickets and drive product adoption.',
+    tags: ['React', 'TypeScript', 'MCP', 'AI agents'],
   },
   {
     where: 'Zededa · ZedControl',
-    title: 'Design System',
-    text: 'Started and led the product-wide component library. Cut per-feature frontend rework by around 40%.',
+    title: 'Design System and frontend standards',
+    text: 'Started and led the product-wide Design System component library, bringing one consistent UI across the console. Set the coding standards and component patterns for the React, Redux and TypeScript codebase, reviewed pull requests, and defined API contracts and feature scope with product and backend.',
+    tags: ['React', 'Redux', 'Design System', 'Code review'],
+  },
+  {
+    where: 'Zededa · ZedControl',
+    title: 'Edge console features, end to end',
+    text: 'Built edge node management, Kubernetes service management, device orchestration, the app marketplace, user onboarding and TOTP 2FA, from technical design through implementation, Jest unit tests and Cypress E2E tests.',
+    tags: ['React', 'Redux', 'Jest', 'Cypress'],
+  },
+  {
+    where: 'Zededa · ZedControl',
+    title: '802.1X network authentication',
+    text: 'Implemented the 802.1X network authentication flow end to end: the backend service in Go and the frontend integration in React, for secure network access control across edge devices.',
+    tags: ['Go', 'gRPC', 'React'],
   },
   {
     where: 'Introsort',
-    title: 'Payroll service POC',
-    text: 'Designed and built a payroll service that works out pay from contracts, hours and bonuses. Infra and pipeline in AWS CDK.',
+    title: 'Payroll processing service',
+    text: 'Designed and built a new payroll service, delivered as a proof of concept for a new client, that calculates pay for a facility’s employees over a period from their contracts, hours worked and bonuses.',
+    tags: ['Deno', 'TypeScript', 'AWS'],
+  },
+  {
+    where: 'Introsort',
+    title: 'Infra as code and platform design',
+    text: 'Set up the AWS infrastructure and deployment pipelines as code with AWS CDK, and worked on the architecture for a unified platform, moving an existing monolith toward microservices.',
+    tags: ['AWS CDK', 'CI/CD', 'Microservices'],
   },
 ]
 
+export type Role = {
+  title: string
+  dates: string
+  summary?: string
+  points: string[]
+}
+
 export type Job = {
   company: string
-  role: string
-  dates: string
-  current?: boolean
   about: string
-  points: string[]
+  span: string
+  current?: boolean
+  roles: Role[]
 }
 
 export const jobs: Job[] = [
   {
     company: 'Introsort Technologies',
-    role: 'Staff Software Engineer, Full Stack',
-    dates: 'Jul 2026 – now',
+    about: 'Scheduling and payroll calculation platform for healthcare, built with React, TypeScript, Deno and AWS.',
+    span: 'Jul 2026 – now',
     current: true,
-    about: 'Scheduling and payroll platform for healthcare. React, TypeScript, Deno, AWS.',
-    points: [
-      'Built a payroll processing service as a POC for a new client: pay per employee from contracts, hours worked and bonuses.',
-      'Set up AWS infrastructure and deployment pipelines as code with AWS CDK.',
-      'Worked on the architecture for moving an existing monolith toward microservices.',
-      'Built payroll screens in React and backend services in Deno; mentoring a junior engineer.',
+    roles: [
+      {
+        title: 'Staff Software Engineer, Full Stack',
+        dates: 'Jul 2026 – now',
+        points: [
+          'Designed and built a new payroll processing service, delivered as a proof of concept for a new client, that calculates pay for a facility’s employees over a period from contracts, hours worked and bonuses.',
+          'Set up the AWS infrastructure and deployment pipelines as code using AWS CDK.',
+          'Worked on the architecture design for a unified platform, moving an existing monolith toward a microservices structure.',
+          'Built payroll features across React/TypeScript frontend screens and Deno backend services, while mentoring a junior engineer on the team.',
+        ],
+      },
     ],
   },
   {
     company: 'Zededa',
-    role: 'Staff Software Engineer, Full Stack',
-    dates: 'Oct 2021 – Jun 2026',
-    about: 'ZedControl: SaaS console for deploying and running edge AI workloads across 10,000+ nodes on EVE-OS.',
-    points: [
-      'Led frontend architecture and delivery of the AI Assistant (MCP server, agent workflows).',
-      'Started the product-wide Design System; around 40% less per-feature rework.',
-      'Set frontend standards across the React/Redux codebase, reviewed PRs, defined API contracts with backend.',
-      'Built the 802.1X network auth flow end to end: Go service plus React integration.',
-      'Shipped node management, Kubernetes service management, app marketplace, onboarding and TOTP 2FA, with Jest and Cypress tests.',
-      'Worked with Kafka pipelines, gRPC services and PostgreSQL for real-time device telemetry.',
+    about: 'ZedControl: cloud-native SaaS console for deploying and orchestrating edge AI workloads across 10,000+ edge nodes on EVE-OS.',
+    span: 'Oct 2021 – Jun 2026',
+    roles: [
+      {
+        title: 'Staff Software Engineer',
+        dates: 'Jan 2026 – Jun 2026',
+        points: [
+          'Led frontend architecture and delivery of ZedControl’s AI Assistant, integrating an MCP server and AI agent workflows so users could query their edge infrastructure in real time, helping reduce support tickets and drive product adoption.',
+          'Initiated and led the product-wide Design System component library, bringing consistency to the UI and cutting per-feature frontend rework.',
+          'Established frontend coding standards and component patterns across the React, Redux and TypeScript codebase; reviewed pull requests and defined API contracts and feature scope with product and backend teams.',
+        ],
+      },
+      {
+        title: 'Senior Software Engineer',
+        dates: 'Oct 2021 – Jan 2026',
+        summary: 'Started on the React/Redux/TypeScript console, then took full-stack ownership with Go, gRPC and Kafka backend work.',
+        points: [
+          'Built the frontend for edge node management, Kubernetes-based service management, device orchestration, app marketplace, user onboarding and TOTP-based 2FA, from technical design through implementation, Jest unit tests and Cypress E2E tests.',
+          'Implemented the 802.1X network authentication flow end to end, writing the backend service in Go and the frontend integration in React.',
+          'Worked with Kafka-based streaming pipelines, gRPC services and PostgreSQL supporting real-time device telemetry and event-driven processing across edge nodes.',
+        ],
+      },
     ],
   },
   {
     company: 'InTimeTec VisionSoft',
-    role: 'Sr. Software Engineer (from Jr. Software Engineer)',
-    dates: 'Jul 2017 – Oct 2021',
-    about: 'Web, serverless, IoT and embedded projects for clients including HP.',
-    points: [
-      'HP PS Service Portal: React frontend; Node.js APIs on AWS Lambda with DynamoDB, MongoDB and S3.',
-      'HP-JAB IoT: Docker services on a Raspberry Pi device collecting printer data; secure boot, TPM-backed credentials, systemd.',
-      'SGW Embedded: C firmware for a handheld STM32 GPS device.',
+    about: 'Web, serverless cloud, IoT and embedded projects for clients including HP.',
+    span: 'Jul 2017 – Sep 2021',
+    roles: [
+      {
+        title: 'Senior Software Engineer',
+        dates: 'May 2020 – Sep 2021',
+        summary: 'HP PS Service Portal: full-stack and serverless work for HP.',
+        points: [
+          'Built React frontend features in JavaScript and TypeScript for HP’s Personal Systems Services portal, where HP customers book HP services.',
+          'Built serverless APIs in Node.js on AWS Lambda with DynamoDB, MongoDB and S3, covered by Jest unit tests and Cypress end-to-end tests.',
+        ],
+      },
+      {
+        title: 'Software Engineer',
+        dates: 'May 2018 – Jul 2020',
+        summary: 'HP-JAB IoT: IoT and embedded Linux work for HP.',
+        points: [
+          'Built Docker containers running shell-script services on a Raspberry Pi based Linux device to collect data from HP printers and send it to the cloud, including Wi-Fi and LAN setup.',
+          'Implemented secure boot with GRUB and shim signing and TPM-based encryption for device credentials, managed services with systemd, and automated flashing of bootable images.',
+        ],
+      },
+      {
+        title: 'Jr. Software Engineer',
+        dates: 'Jul 2017 – Jul 2018',
+        summary: 'SGW project; started with C and C++ training.',
+        points: ['Worked in C on a handheld STM32-based GPS device that marks a target’s position and distance and guides the user to it.'],
+      },
     ],
   },
 ]

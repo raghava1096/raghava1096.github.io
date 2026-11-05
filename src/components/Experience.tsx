@@ -42,15 +42,24 @@ export default function Experience() {
           <li key={job.company} className={`job ${job.current ? 'job-current' : ''}`}>
             <Reveal>
               <span className="job-dot" aria-hidden="true" />
-              <p className="job-dates">{job.dates}</p>
+              <p className="job-dates">{job.span}</p>
               <h3>{job.company}</h3>
-              <p className="job-role">{job.role}</p>
               <p className="job-about">{job.about}</p>
-              <ul>
-                {job.points.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
+
+              {job.roles.map((role) => (
+                <div key={role.title} className="role">
+                  <div className="role-head">
+                    <p className="job-role">{role.title}</p>
+                    {job.roles.length > 1 && <p className="role-dates">{role.dates}</p>}
+                  </div>
+                  {role.summary && <p className="role-summary">{role.summary}</p>}
+                  <ul>
+                    {role.points.map((p) => (
+                      <li key={p}>{p}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </Reveal>
           </li>
         ))}
