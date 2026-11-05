@@ -5,6 +5,7 @@ export const profile = {
   title: 'Staff Software Engineer · Full Stack',
   location: 'Bengaluru',
   email: 'raghavashettysar@gmail.com',
+  phone: '+91 9164981654',
   linkedin: 'https://www.linkedin.com/in/raghava-shetty',
   github: 'https://github.com/raghava1096',
   resumePdf: 'Raghava_S_Resume.pdf',

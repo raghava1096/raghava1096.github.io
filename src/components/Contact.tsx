@@ -19,11 +19,14 @@ export default function Contact() {
     <section id="contact" className="section contact">
       <Reveal>
         <h2 className="contact-title">Say hello</h2>
-        <p className="muted">Email is the fastest way to reach me.</p>
+        <p className="muted">Email or call, whichever is easier.</p>
         <div className="contact-row">
           <button type="button" className="btn btn-primary" onClick={copyEmail}>
             {copied ? 'Copied ✓' : profile.email}
           </button>
+          <a href={`tel:${profile.phone.replace(/\s/g, '')}`} className="btn btn-outline">
+            {profile.phone}
+          </a>
           <a href={profile.linkedin} className="btn btn-outline" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
